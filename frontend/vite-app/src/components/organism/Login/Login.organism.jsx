@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import useLoginViewModel from "./Login.viewModel";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 function LoginView() {
- const viewModel = useLoginViewModel()
+  const { formik, showPassword, handleShowPassword } = useLoginViewModel();
 
   return (
     <div className="md:p-8 p-4 w-full md:w-[500px] bg-white">
@@ -16,27 +17,32 @@ function LoginView() {
         <input
           type="text"
           name="email"
-          value={viewModel.formik.values.email}
-          onChange={viewModel.formik.handleChange}
+          value={formik.values.email}
+          onChange={formik.handleChange}
           id="email"
-          className="border-b-2 outline-none w-full"
+          className="border-b-2 outline-none w-full px-2"
           placeholder="Username or Email"
         />
-        {viewModel.formik.errors.email && (
-          <p className="text-red-500 text-sm">{viewModel.formik.errors.email}</p>
+        {formik.errors.email && (
+          <p className="text-red-500 text-sm">{formik.errors.email}</p>
         )}
-        <input
-          type="text"
-          name="password"
-          value={viewModel.formik.values.password}
-          onChange={viewModel.formik.handleChange}
-          id=""
-          className="border-b-2 outline-none w-full my-6"
-          placeholder="Password"
-        />
-        {viewModel.formik.errors.password && (
-          <p className="text-red-500 text-sm">{viewModel.formik.errors.password}</p>
-        )}
+        <div className="w-full flex">
+          <input
+            name="password"
+            type={showPassword ? "text" : "password"}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            id=""
+            className="border-b-2 outline-none w-full my-6 px-2"
+            placeholder="Password"
+          />
+          <button onClick={handleShowPassword} className="">
+            {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}{" "}
+          </button>
+          {formik.errors.password && (
+            <p className="text-red-500 text-sm">{formik.errors.password}</p>
+          )}
+        </div>
       </div>
       <div className="flex gap-4 justify-between text-sm">
         <div className="flex items-center gap-4">
@@ -48,7 +54,7 @@ function LoginView() {
 
       <button
         type="submit"
-        onClick={viewModel.formik.handleSubmit}
+        onClick={formik.handleSubmit}
         className=" bg-purple-500 p-2 px-4 my-4 rounded-full font-bold text-white"
       >
         Login

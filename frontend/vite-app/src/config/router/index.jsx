@@ -1,9 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import Register from "../../components/pages/RegisterPage.view";
-import LandingPage from "../../components/pages/LandingPage.view";
-import Login from "../../components/pages/LoginPage.view";
-
+import Register from "../../components/views/RegisterPage.view";
+import LandingPage from "../../components/views/LandingPage.view";
+import Login from "../../components/views/LoginPage.view";
+import HomePage from "../../components/views/HomePage.view";
 export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LandingPage />,
+  },
   {
     path: "/login",
     element: <Login />,
@@ -14,6 +18,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <LandingPage />,
-  },
+    element: <HomePage />,
+  }, 
 ]);

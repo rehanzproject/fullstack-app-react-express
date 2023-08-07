@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import useRegisterViewModel from "./Register.viewModel";
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 function Register() {
-  const viewModel = useRegisterViewModel();
+  const {
+    formik,
+    showConfirmPassword,
+    showPassword,
+    handleConfirmPassword,
+    handleShowPassword,
+  } = useRegisterViewModel();
 
   return (
     <div className="md:p-8 p-4 w-full md:w-[500px] bg-white">
@@ -14,62 +20,65 @@ function Register() {
         </Link>
       </p>
       <div className="py-6 flex flex-wrap">
-      <input
+        <input
           type="text"
           name="name"
-          value={viewModel.formik.values.name}
-          onChange={viewModel.formik.handleChange}
+          value={formik.values.name}
+          onChange={formik.handleChange}
           id="name"
           className="border-b-2 outline-none w-full"
           placeholder="Your Name"
         />
-        {viewModel.formik.errors.name && (
-          <p className="text-red-500 text-sm">
-            {viewModel.formik.errors.name}
-          </p>
+        {formik.errors.name && (
+          <p className="text-red-500 text-sm">{formik.errors.name}</p>
         )}
         <input
           type="text"
           name="email"
-          value={viewModel.formik.values.email}
-          onChange={viewModel.formik.handleChange}
+          value={formik.values.email}
+          onChange={formik.handleChange}
           id="email"
           className="border-b-2 outline-none w-full my-6"
           placeholder="Username or Email"
         />
-        {viewModel.formik.errors.email && (
-          <p className="text-red-500 text-sm">
-            {viewModel.formik.errors.email}
-          </p>
+        {formik.errors.email && (
+          <p className="text-red-500 text-sm">{formik.errors.email}</p>
         )}
-        <input
-          type="text"
-          name="password"
-          value={viewModel.formik.values.password}
-          onChange={viewModel.formik.handleChange}
-          id=""
-          className="border-b-2 outline-none w-full my-6"
-          placeholder="Password"
-        />
-        {viewModel.formik.errors.password && (
-          <p className="text-red-500 text-sm">
-            {viewModel.formik.errors.password}
-          </p>
-        )}
-        <input
-          type="text"
-          name="confPassword"
-          value={viewModel.formik.values.confPassword}
-          onChange={viewModel.formik.handleChange}
-          id=""
-          className="border-b-2 outline-none w-full my-6"
-          placeholder="confPassword"
-        />
-        {viewModel.formik.errors.confPassword && (
-          <p className="text-red-500 text-sm">
-            {viewModel.formik.errors.confPassword}
-          </p>
-        )}
+        <div className="w-full flex">
+          <input
+             type={showPassword ? "text" :  "password"}
+           
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            id=""
+            className="border-b-2 outline-none w-full my-6"
+            placeholder="Password"
+          />
+          <button onClick={handleShowPassword}>
+            {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+          </button>
+          {formik.errors.password && (
+            <p className="text-red-500 text-sm">{formik.errors.password}</p>
+          )}
+        </div>
+        <div className="w-full flex">
+          <input
+            type={showConfirmPassword ? "text" :  "password"}
+            name="confPassword"
+            value={formik.values.confPassword}
+            onChange={formik.handleChange}
+            id=""
+            className="border-b-2 outline-none w-full my-6"
+            placeholder="Confirm Password"
+          />
+          {formik.errors.confPassword && (
+            <p className="text-red-500 text-sm">{formik.errors.confPassword}</p>
+          )}
+          <button onClick={handleConfirmPassword}>
+            {showConfirmPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+          </button>
+        </div>
       </div>
       <div className="flex gap-4 justify-between text-sm">
         <div className="flex items-center gap-4">
@@ -81,7 +90,7 @@ function Register() {
 
       <button
         type="submit"
-        onClick={viewModel.formik.handleSubmit}
+        onClick={formik.handleSubmit}
         className=" bg-purple-500 p-2 px-4 my-4 rounded-full font-bold text-white"
       >
         Register
