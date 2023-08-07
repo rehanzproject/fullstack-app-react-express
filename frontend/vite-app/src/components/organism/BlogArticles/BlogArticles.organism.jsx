@@ -1,5 +1,5 @@
 import ArticleCard from "../../molecule/ArticleCard/ArticleCard.molecule";
-import food2 from "../../../assets/food2.png";
+import food2 from "../../../assets/Food2.png";
 function BlogArticles() {
   const articleList = [
     {
