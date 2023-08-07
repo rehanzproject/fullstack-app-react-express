@@ -8,7 +8,9 @@ export const getUsers = async (req, res) => {
       attributes: ["id", "name", "email"],
     });
     res.json(users);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export const Register = async (req, res) => {
