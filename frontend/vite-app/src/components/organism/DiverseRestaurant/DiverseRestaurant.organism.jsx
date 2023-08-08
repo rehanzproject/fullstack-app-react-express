@@ -4,7 +4,7 @@ import Diverse from "../../molecule/Diverse/Diverse.molecule";
 function DiverseRestaurant() {
   return (
     <div
-      className={`relative h-screen bg-[url('./assets/diverse.png')] bg-cover`}
+      className={`px-2 md:px-4 lg:px-16 relative h-screen bg-[url('./assets/diverse.png')] bg-cover`}
     >
       <Navbar />
       <Diverse />

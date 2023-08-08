@@ -6,7 +6,7 @@ import HomePage from "../../components/views/HomePage.view";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
+    element: <HomePage />,
   },
   {
     path: "/login",
@@ -18,6 +18,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <HomePage />,
+    element: <LandingPage />,
   }, 
 ]);
