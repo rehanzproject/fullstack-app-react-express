@@ -83,7 +83,6 @@ export const Logout = async (req, res) => {
         refreshToken: refreshToken,
       },
     });
-    console.log(user[0]);
     if (!user[0]) return res.sendStatus(204);
     const userId = user[0].id;
     await Users.update(
