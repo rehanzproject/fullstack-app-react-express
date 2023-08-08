@@ -1,25 +1,30 @@
-import BeginningRestaurant from "../organism/BeginningRestaurant/BeginningRestaurant.organism";
-import BlogArticles from "../organism/BlogArticles/BlogArticles.organism";
-import DiverseRestaurant from "../organism/DiverseRestaurant/DiverseRestaurant.organism";
-import Footer from "../organism/Footer/Footer.organism";
-import MostSales from "../organism/MostSales/MostSales.organism";
-import OurMenu from "../organism/OurMenu/OurMenu.organism";
-import Subscribe from "../organism/Subscribe/Subscribe.organism";
-import WhatTheyAreSaying from "../organism/WhatTheyAreSaying/WhatTheyAreSaying.organism";
+import React, { useEffect } from "react";
+import { getRequest, getRequestAuth } from "../../config/helper/fetcherMethod";
+import { toast } from "react-toastify";
+import jwt_decode from "jwt-decode";
+import Navbar from "../organism/Navbar/Navbar.organism";
 
 function HomePage() {
+  useEffect(() => {
+    const fetchApi = async () => {
+      try {
+        const res = await getRequest("token");
+        if (res) {
+          localStorage.setItem("token", res.accessToken);
+          const decoded = jwt_decode(res.accessToken);
+          toast.success(`Welcome back : ${decoded.name}`);
+          await getRequestAuth("user")
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchApi();
+  }, []);
+
   return (
     <div>
-      <DiverseRestaurant />
-      <div className="bg-gray-100 md:pl-12 md:py-1">
-        <BeginningRestaurant />
-        <MostSales />
-        <OurMenu />
-        <WhatTheyAreSaying />
-        <BlogArticles />
-      </div>
-      <Subscribe />
-      <Footer />
+      <Navbar />
     </div>
   );
 }

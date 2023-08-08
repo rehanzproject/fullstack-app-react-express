@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Diverse() {
     return (
       <div className="px-2 md:px-16 py-20 md:w-1/2">
@@ -9,9 +11,9 @@ function Diverse() {
           esse numquam ipsam tempore repellat necessitatibus, natus corrupti, et
           sapiente.
         </p>
-        <button className="px-4  py-2 rounded-full text-white items-center bg-success-10 ">
+        <Link to="/login" className="px-4  py-2 rounded-full text-white items-center bg-success-10 ">
           Order Now
-        </button>
+        </Link >
       </div>
     );
   }

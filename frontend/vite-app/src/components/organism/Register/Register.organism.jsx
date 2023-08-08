@@ -14,7 +14,7 @@ function Register() {
   } = useRegisterViewModel();
 
   return (
-    <div className="flex flex-1 justify-center items-center md:p-8 p-4  bg-white">
+    <div className="flex flex-1 justify-center items-center md:p-8 p-4 bg-white">
       <div className="justify-center items-center">
         <h1 className="font-bold text-2xl">Register</h1>
         <p>

@@ -7,7 +7,7 @@ function LoginView() {
   const { formik, showPassword, handleShowPassword } = useLoginViewModel();
 
   return (
-    <div className="flex flex-col justify-center items-center md:p-8 p-4  bg-white">
+    <div className="flex flex-1 flex-col justify-center items-center md:p-8 p-4 bg-white">
       <div className="justify-center items-center">
         <h1 className="font-extrabold text-2xl">Hello Again</h1>
         <p>Welcome Back </p>
