@@ -5,7 +5,7 @@ import EmailIcon from "../../atom/icons/EmailIcon";
 import PadLockIcon from "../../atom/icons/PadLockIcon";
 function LoginView() {
   const { formik, showPassword, handleShowPassword } = useLoginViewModel();
-
+console.log(import.meta.env);
   return (
     <div className="flex flex-1 flex-col justify-center items-center md:p-8 p-4 bg-white">
       <div className="justify-center items-center">

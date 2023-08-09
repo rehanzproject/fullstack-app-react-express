@@ -1,10 +1,11 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { postRequest } from "../../../config/helper/fetcherMethod";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import useFetcherMethod from "../../../config/hooks/useFetcherMethod";
 function useLoginViewModel() {
+  const { postRequest } = useFetcherMethod();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const LoginSchema = Yup.object().shape({
@@ -22,7 +23,6 @@ function useLoginViewModel() {
     validationSchema: LoginSchema,
     onSubmit: async (values) => {
       try {
-       
         const res = await postRequest("login", values);
         if (res) {
           toast.success(res.msg, {
@@ -36,7 +36,7 @@ function useLoginViewModel() {
       }
     },
   });
-  return { formik, showPassword , handleShowPassword };
+  return { formik, showPassword, handleShowPassword };
 }
 
 export default useLoginViewModel;
