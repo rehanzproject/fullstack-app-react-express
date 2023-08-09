@@ -1,7 +1,4 @@
 export const createTokenSlice = (set) => ({
   token: "",
-  updateToken: (action) => {
-    console.log(action);
-    set({ token: action });
-  },
+  updateToken: (action) => set({ token: action }),
 });

@@ -19,7 +19,7 @@ function HomePage() {
           await getRequestAuth("user");
         }
       } catch (error) {
-        console.log(error);
+        toast.error(error);
       }
     };
     fetchApi();
