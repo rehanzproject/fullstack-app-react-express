@@ -10,7 +10,7 @@ function LandingPage() {
   return (
     <div>
       <DiverseRestaurant />
-      <div className="bg-gray-100 md:pl-12 md:py-1">
+      <div className="bg-gray-100 md:pl-12 md:py-1 px-4">
         <BeginningRestaurant />
         <MostSales />
         <OurMenu />

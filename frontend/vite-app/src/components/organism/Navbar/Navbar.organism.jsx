@@ -3,7 +3,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "Home", href: "#" },
-  { name: "Login", href: "/login" },
   { name: "Menu", href: "#menu" },
   { name: "About Us", href: "#blog" },
   { name: "Best Deals", href: "#subscribe" },
@@ -32,7 +31,9 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="text-white text-lg px-2 lg:px-12 md:px-16">Diverse Food</div>
+              <div className="text-white text-lg px-2 lg:px-12 md:px-16">
+                Diverse Food
+              </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -48,6 +49,7 @@ export default function Navbar() {
                         {item.name}
                       </a>
                     ))}
+                    <button className="text-white border-white border-2 px-2">Book Now!</button>
                   </div>
                 </div>
               </div>
@@ -72,6 +74,8 @@ export default function Navbar() {
                   {item.name}
                 </Disclosure.Button>
               ))}
+                 <button className="text-white border-white border-2 px-2 w-full">Book Now!</button>
+                
             </div>
           </Disclosure.Panel>
         </>

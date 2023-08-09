@@ -32,7 +32,7 @@ function useLoginViewModel() {
           });
         }
       } catch (error) {
-        toast.error(error.response.data.msg || error.message);
+        toast.error(error.response || error.message);
       }
     },
   });

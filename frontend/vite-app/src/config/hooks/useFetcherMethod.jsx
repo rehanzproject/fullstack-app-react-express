@@ -11,9 +11,10 @@ function useFetcherMethod() {
   };
   const getRequest = async (url) => {
     try {
-      const res = await axios.get(import.meta.env.VITE_BASE_API_URL + url, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        import.meta.env.VITE_BASE_API_URL + url,
+        config
+      );
       return res.data;
     } catch (error) {
       console.error(error.response);

@@ -14,15 +14,10 @@ function Register() {
   } = useRegisterViewModel();
 
   return (
-    <div className="flex flex-1 justify-center items-center md:p-8 p-4 bg-white">
+    <div className="flex flex-1 flex-col justify-center items-center md:p-8 p-4 bg-white">
       <div className="justify-center items-center">
         <h1 className="font-bold text-2xl">Register</h1>
-        <p>
-          Have an account?{" "}
-          <Link to="/login" className="text-blue-400">
-            Login Here
-          </Link>
-        </p>
+
         <div className="py-6 flex flex-wrap">
           <div className="relative w-full">
             <input
@@ -41,24 +36,24 @@ function Register() {
               <p className="text-red-500 text-sm">{formik.errors.name}</p>
             )}
           </div>
-          <div className="w-full relative py-4">
-          <input
-            type="text"
-            name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            id="email"
-            className="rounded-full outline-none w-full pl-12"
-            placeholder="Username or Email"
-          />
-           <div className="absolute inset-y-0 left-4 py-6 opacity-20">
+          <div className="w-full relative py-8">
+            <input
+              type="text"
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              id="email"
+              className="rounded-full outline-none w-full pl-12"
+              placeholder="Username or Email"
+            />
+            <div className="absolute inset-y-0 left-4 py-10 opacity-20">
               <EmailIcon />
             </div>
-          {formik.errors.email && (
-            <p className="text-red-500 text-sm">{formik.errors.email}</p>
-          )}
+            {formik.errors.email && (
+              <p className="text-red-500 text-sm">{formik.errors.email}</p>
+            )}
           </div>
-         
+
           <div className="w-full relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -69,17 +64,20 @@ function Register() {
               className="rounded-full outline-none w-full pl-12"
               placeholder="Password"
             />
-               <div className="absolute inset-y-0 left-4 py-2 opacity-20">
+            <div className="absolute inset-y-0 left-4 py-2 opacity-20">
               <PadLockIcon />
             </div>
-            <button onClick={handleShowPassword}  className="absolute inset-y-0 right-4">
+            <button
+              onClick={handleShowPassword}
+              className="absolute inset-y-0 right-4"
+            >
               {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
             </button>
             {formik.errors.password && (
               <p className="text-red-500 text-sm">{formik.errors.password}</p>
             )}
           </div>
-          <div className="w-full relative pt-4">
+          <div className="w-full relative pt-8">
             <input
               type={showConfirmPassword ? "text" : "password"}
               name="confPassword"
@@ -89,7 +87,7 @@ function Register() {
               className="rounded-full outline-none w-full pl-12"
               placeholder="Confirm Password"
             />
-             <div className="absolute inset-y-0 left-4 py-6 opacity-20">
+            <div className="absolute inset-y-0 left-4 py-10 opacity-20">
               <PadLockIcon />
             </div>
             {formik.errors.confPassword && (
@@ -99,7 +97,7 @@ function Register() {
             )}
             <button
               onClick={handleConfirmPassword}
-              className="absolute inset-y-0 right-4"
+              className="absolute inset-y-0 right-4 pt-8"
             >
               {showConfirmPassword ? (
                 <AiOutlineEye />
@@ -116,6 +114,12 @@ function Register() {
         >
           Register
         </button>
+        <p>
+          Have an account?{" "}
+          <Link to="/login" className="text-blue-400">
+            Login Here
+          </Link>
+        </p>
       </div>
     </div>
   );

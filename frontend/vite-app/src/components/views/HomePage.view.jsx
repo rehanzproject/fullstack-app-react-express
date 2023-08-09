@@ -7,7 +7,8 @@ import { useBoundStore } from "../../config/zustand/boundStore";
 
 function HomePage() {
   const { getRequest, getRequestAuth } = useFetcherMethod();
-  const updateToken = useBoundStore((state) => state.updateToken);
+  const updateToken = useBoundStore((state) => state.updateToken)
+ 
   useEffect(() => {
     const fetchApi = async () => {
       try {
@@ -16,7 +17,6 @@ function HomePage() {
           updateToken(res.accessToken);
           const decoded = jwt_decode(res.accessToken);
           toast.success(`Welcome back : ${decoded.name}`);
-          await getRequestAuth("user");
         }
       } catch (error) {
         toast.error(error);
