@@ -2,12 +2,68 @@ import Products from "../models/ProductModel.js";
 export const getProducts = async (req, res) => {
   try {
     const products = await Products.findAll({
-      where: {
-        id: req.query.id,
-      },
+      attributes: ["id", "name", "price", "rating"],
     });
     if (!products) return res.sendStatus(404);
     res.json(products);
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+export const getProductByOne = async (req, res) => {
+  try {
+    const products = await Products.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["id", "name", "price", "rating"],
+    });
+    if (!products) return res.sendStatus(404);
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+
+export const updateProduct = async (req, res) => {
+  const { name, price, rating, desc } = req.body;
+  try {
+    const product = Products.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!product) return res.sendStatus(404);
+    await Products.update(
+      {
+        name: name,
+        price: price,
+        desc: desc,
+        rating: rating,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    res.status(200).json({ msg: "Success Update Data!" });
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+
+export const deleteProduct = async (req, res) => {
+  try {
+    const products = await Products.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["id", "name", "price", "rating"],
+    });
+    if (!products) return res.sendStatus(404);
+    await Products.destroy({ where: { id: req.params.id } });
+    res.status(200).json({msg: "Success Delete Product!"});
   } catch (error) {
     res.status(500).json({ msg: error });
   }
