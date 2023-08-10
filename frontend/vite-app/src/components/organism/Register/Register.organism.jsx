@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import useRegisterViewModel from "./Register.viewModel";
+import  useRegisterViewModel from "../../../utils/hooks/useRegisterViewModel";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import ProfileIcon from "../../atom/icons/ProfileIcon";
 import EmailIcon from "../../atom/icons/EmailIcon";

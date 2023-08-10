@@ -3,7 +3,8 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import useFetcherMethod from "../../../config/hooks/useFetcherMethod";
+import useFetcherMethod from "./useFetcherMethod";
+
 function useRegisterViewModel() {
   const { postRequest } = useFetcherMethod();
 

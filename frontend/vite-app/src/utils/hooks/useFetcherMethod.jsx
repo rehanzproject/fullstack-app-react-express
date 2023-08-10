@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useBoundStore } from "../zustand/boundStore";
+import { useBoundStore } from "../../config/zustand/boundStore";
 
 function useFetcherMethod() {
   const token = useBoundStore((state) => state.token);

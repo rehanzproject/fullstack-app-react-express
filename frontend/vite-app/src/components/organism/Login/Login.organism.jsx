@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import useLoginViewModel from "./Login.viewModel";
+import useLoginViewModel  from "../../../utils/hooks/useLoginViewModel";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import EmailIcon from "../../atom/icons/EmailIcon";
 import PadLockIcon from "../../atom/icons/PadLockIcon";

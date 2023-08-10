@@ -1,29 +1,22 @@
 import React, { useEffect } from "react";
-import useFetcherMethod from "../../config/hooks/useFetcherMethod";
+import useFetcherMethod from "../../utils/hooks/useFetcherMethod";
 import { toast } from "react-toastify";
-import jwt_decode from "jwt-decode";
 import Navbar from "../organism/Navbar/Navbar.organism";
 import { useBoundStore } from "../../config/zustand/boundStore";
 
 function HomePage() {
-  const { getRequest, getRequestAuth } = useFetcherMethod();
+  const { getRequest } = useFetcherMethod();
   const updateToken = useBoundStore((state) => state.updateToken)
  
   useEffect(() => {
-    const fetchApi = async () => {
-      try {
-        const res = await getRequest("token");
-        if (res) {
-          updateToken(res.accessToken);
-          const decoded = jwt_decode(res.accessToken);
-          toast.success(`Welcome back : ${decoded.name}`);
-        }
-      } catch (error) {
-        toast.error(error);
-      }
-    };
-    fetchApi();
+    const fetch = async () => {
+      const res = await getRequest("product")
+      // const filter = URL.createObjectURL(res[0].picture.data)
+      console.log(res[0].picture);
+    }
+    fetch()
   }, []);
+  
 
   return (
     <div>
