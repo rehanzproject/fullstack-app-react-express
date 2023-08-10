@@ -4,6 +4,12 @@ import router from "./routes/index.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import fileUpload from "express-fileupload"
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
+import { options } from "./routes/optionSwagger.js";
+const specs = swaggerJsdoc(options);
+
 dotenv.config();
 const app = express();
 
@@ -13,6 +19,7 @@ try {
 } catch (error) {
   console.error(error);
 }
+app.use(fileUpload());
 app.use(cors({ credentials: true, origin: ["http://localhost:5173", "https://fullstack-app-react-express.vercel.app/"] }));
 app.use(cookieParser());
 app.use(express.json());
