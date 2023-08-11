@@ -7,7 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        "success-10": "#00A890"
+        "dark-10": "#1C2434",
+        "dark-20": "#DEE4EE",
+        "dark-30": "#8A99AF",
+        "success-10": "#00A890",
       }
     },
   },
