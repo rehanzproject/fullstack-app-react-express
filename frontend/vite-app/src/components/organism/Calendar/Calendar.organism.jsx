@@ -16,15 +16,14 @@ function MyCalendar() {
     return weekdays[date.getDay()];
   };
   return (
-    <div>
+    <div className="text-xs md:text-base md:w-full w-auto">
       <Calendar
         onChange={onChange}
         value={value}
-        formatShortWeekday={formatShortWeekday} 
-        className="w-1/2 h-1/2"// Use the custom formatting function
+        formatShortWeekday={formatShortWeekday}
       />
     </div>
-  )
+  );
 }
 
 export default MyCalendar;
