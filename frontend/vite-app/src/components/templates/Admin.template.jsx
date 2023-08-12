@@ -9,7 +9,7 @@ function AdminTemplate() {
       <SideBarAdmin />
       <div className="flex flex-col w-full">
         <TopBarAdmin />
-        <div className="bg-gray-200">
+        <div className="bg-dark-20">
           <Outlet />
         </div>
       </div>

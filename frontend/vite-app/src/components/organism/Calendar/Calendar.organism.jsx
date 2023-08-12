@@ -20,7 +20,8 @@ function MyCalendar() {
       <Calendar
         onChange={onChange}
         value={value}
-        formatShortWeekday={formatShortWeekday} // Use the custom formatting function
+        formatShortWeekday={formatShortWeekday} 
+        className="w-1/2 h-1/2"// Use the custom formatting function
       />
     </div>
   )
