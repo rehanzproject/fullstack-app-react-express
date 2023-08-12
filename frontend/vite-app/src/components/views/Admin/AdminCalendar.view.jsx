@@ -6,7 +6,7 @@ function AdminCalendar() {
     <div className="p-10">
       <div className="flex justify-between">
         <h1 className="font-bold text-2xl">Calendar</h1>
-        <p>
+        <p className="flex items-end text-sm md:text-base">
           Dashboard / <span className="text-blue-500 ">Calendar</span>{" "}
         </p>
       </div>
