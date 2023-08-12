@@ -35,11 +35,11 @@ function SideBarAdmin() {
   return (
     <div
       className={`fixed z-10 bg-dark-10 transition-width ${
-        open ? "w-80 translate-x-0" : "w-0 translate-x-full" 
-      } h-screen  ease-in-out duration-500`}
+        open ? "w-80 translate-x-0" : "w-0 translate-x-0" 
+      } h-screen ease-linear duration-300`}
     >
       {!open && (
-        <button onClick={()=>setOpen(!open)} className="absolute cursor-pointer top-0 px-10 py-5 z-10">
+        <button onClick={()=>setOpen(!open)} className="absolute transition hover:translate-x-0 hover:scale-110 ease-in duration-200 cursor-pointer top-0 px-10 py-5 z-10">
           <LogoTailIcon />
         </button>
       )}
