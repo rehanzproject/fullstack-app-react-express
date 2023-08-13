@@ -8,6 +8,8 @@ import fileUpload from "express-fileupload";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import { options } from "./routes/optionSwagger.js";
+import Products from "./models/ProductModel.js";
+import Transaction from "./models/TransactionModel.js";
 const specs = swaggerJsdoc(options);
 
 dotenv.config();
@@ -16,6 +18,8 @@ const app = express();
 try {
   await db.authenticate();
   console.log("Database Connected...");
+  // await Products.sync()
+  // await Transaction.sync()
 } catch (error) {
   console.error(error);
 }

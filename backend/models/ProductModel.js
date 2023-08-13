@@ -1,15 +1,15 @@
 import { DataTypes, Sequelize } from "sequelize";
 import db from "../config/database.js";
+import Transaction from "./TransactionModel.js";
 
 const Products = db.define(
   "product",
   {
-    id: {
-      type: DataTypes.UUID, // Use the UUID data type
-      defaultValue: DataTypes.UUIDV4,
+    name_product: {
+      type: DataTypes.STRING,
       primaryKey: true,
     },
-    name: {
+    name_transaction: {
       type: DataTypes.STRING,
     },
     price: {
@@ -27,5 +27,7 @@ const Products = db.define(
   },
   { freezeTableName: true }
 );
+Products.hasMany(Transaction, { foreignKey: "name_product", sourceKey: "name_product" });
+Transaction.belongsTo(Products, { foreignKey: "name_product", targetKey: "name_product" });
 
 export default Products;

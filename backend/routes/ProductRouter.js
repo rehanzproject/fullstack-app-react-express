@@ -7,7 +7,7 @@ import {
   getProducts,
   updateProduct,
 } from "../controllers/Products.js";
-
+import { verifyToken } from "../middleware/VerifyToken.js";
 /**
  * @swagger
  * components:
@@ -145,11 +145,11 @@ const ProductRouter = express.Router();
  *       404:
  *         description: The book was not found
  */
-ProductRouter.get("/products", getProducts);
-ProductRouter.get("/product/:id", getProductByOne);
-ProductRouter.put("/product/:id", updateProduct);
-ProductRouter.delete("/product/:id", deleteProduct);
-ProductRouter.post("/product", addProducts);
+ProductRouter.get("/", verifyToken, getProducts);
+ProductRouter.get("/:id", getProductByOne);
+ProductRouter.put("/:id", updateProduct);
+ProductRouter.delete("/:id", deleteProduct);
+ProductRouter.post("/", addProducts);
 ProductRouter.post("/pict", addPicture);
 
 export default ProductRouter;

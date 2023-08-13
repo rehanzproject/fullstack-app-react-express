@@ -1,12 +1,19 @@
 import Products from "../models/ProductModel.js";
+import Transaction from "../models/TransactionModel.js";
 export const getProducts = async (req, res) => {
   try {
-    const products = await Products.findAll({
-      attributes: ["id", "name", "price", "rating"],
-    });
+    const products = await Products.findAll(
+      {
+      include: {
+        model: Transaction
+      },}
+    //   attributes: ["name_transaction", "name_product", "price"  , "desc"]
+    // }
+    );
     if (!products) return res.sendStatus(404);
     res.json(products);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ msg: error });
   }
 };
