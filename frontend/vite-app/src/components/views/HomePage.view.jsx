@@ -10,9 +10,10 @@ function HomePage() {
  
   useEffect(() => {
     const fetch = async () => {
-      const res = await getRequest("product")
-      // const filter = URL.createObjectURL(res[0].picture.data)
-      console.log(res[0].picture);
+      const res = await getRequest("products")
+    if(res){
+      toast.success(res)
+    }
     }
     fetch()
   }, []);

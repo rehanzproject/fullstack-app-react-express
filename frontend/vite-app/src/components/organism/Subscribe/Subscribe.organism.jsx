@@ -17,7 +17,7 @@ function Subscribe() {
               type="text"
               name=""
               id=""
-              className="rounded-full p-2 px-10 w-full md:w-[712px]"
+              className="rounded-full p-2 px-10 w-full md:w-1/2"
               placeholder="Please enter your email address"
             />
             <button className="rounded-full bg-success-10 p-2 my-2 md:my-0 text-white w-full md:w-auto md:mx-6">

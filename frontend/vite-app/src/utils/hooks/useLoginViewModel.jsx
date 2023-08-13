@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import useFetcherMethod from "./useFetcherMethod";
+import { useBoundStore } from "../../config/zustand/boundStore";
 function useLoginViewModel() {
   const { postRequest } = useFetcherMethod();
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ function useLoginViewModel() {
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
+  const updateToken = useBoundStore((state) => state.updateToken)
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -30,6 +32,7 @@ function useLoginViewModel() {
               navigate("/home");
             },
           });
+          updateToken(res.accessToken)
         }
       } catch (error) {
         toast.error(error.response || error.message);

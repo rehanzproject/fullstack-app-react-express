@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useBoundStore } from "../../config/zustand/boundStore";
+import { toast } from "react-toastify";
 
 function useFetcherMethod() {
   const token = useBoundStore((state) => state.token);
@@ -15,29 +16,19 @@ function useFetcherMethod() {
         import.meta.env.VITE_BASE_API_URL + url,
         config
       );
+      if (res) {
+        toast.success(res.data.msg);
+      }
       return res.data;
     } catch (error) {
-      console.error(error.response);
-    }
-  };
-  const getRequestAuth = async (url) => {
-    try {
-      const res = await axios.get(
-        import.meta.env.VITE_BASE_API_URL + url,
-        config
-      );
-      return res.data;
-    } catch (error) {
-      console.error(error);
+      toast.error(error.response.data);
     }
   };
   const postRequest = async (url, values) => {
     const res = await axios.post(
       import.meta.env.VITE_BASE_API_URL + url,
       values,
-      {
-        withCredentials: true,
-      }
+      config
     );
     return res.data;
   };
