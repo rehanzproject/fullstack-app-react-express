@@ -5,18 +5,14 @@ import Transaction from "./TransactionModel.js";
 const Products = db.define(
   "product",
   {
-    name_product: {
-      type: DataTypes.STRING,
+    id_product: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    name_transaction: {
-      type: DataTypes.STRING,
-    },
+    name_product: { type: DataTypes.STRING },
     price: {
       type: DataTypes.INTEGER,
-    },
-    picture: {
-      type: DataTypes.BLOB,
     },
     rating: {
       type: DataTypes.INTEGER,
@@ -27,7 +23,13 @@ const Products = db.define(
   },
   { freezeTableName: true }
 );
-Products.hasMany(Transaction, { foreignKey: "name_product", sourceKey: "name_product" });
-Transaction.belongsTo(Products, { foreignKey: "name_product", targetKey: "name_product" });
+Products.hasMany(Transaction, {
+  foreignKey: "id_product",
+  sourceKey: "id_product",
+});
+Transaction.belongsTo(Products, {
+  foreignKey: "id_product",
+  targetKey: "id_product",
+});
 
 export default Products;
