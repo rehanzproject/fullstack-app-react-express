@@ -1,27 +1,20 @@
 import React, { useEffect } from "react";
 import useFetcherMethod from "../../utils/hooks/useFetcherMethod";
 import { toast } from "react-toastify";
-import Navbar from "../organism/Navbar/Navbar.organism";
 import { useBoundStore } from "../../config/zustand/boundStore";
+import NavbarUser from "../organism/NavbarUser/NavbarUser.organism";
+import Advertisement from "../organism/Advertisement/Advertisement.organism";
+import OurRecommendation from "../organism/OurRecommendation/OurRecommendation.organism";
 
 function HomePage() {
   const { getRequest } = useFetcherMethod();
-  const updateToken = useBoundStore((state) => state.updateToken)
- 
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await getRequest("products")
-    if(res){
-      toast.success(res)
-    }
-    }
-    fetch()
-  }, []);
-  
+  const updateToken = useBoundStore((state) => state.updateToken);
 
   return (
     <div>
-      <Navbar />
+      <NavbarUser />
+      <Advertisement />
+      <OurRecommendation />
     </div>
   );
 }

@@ -45,7 +45,7 @@ function OurMenu() {
   ];
   return (
     <section id="menu">
-      <div className="md:px-16">
+      <div className="md:px-16 py-4">
         <h1 className="text-success-10 font-normal text-4xl md:text-6xl">
           Our Menu
         </h1>

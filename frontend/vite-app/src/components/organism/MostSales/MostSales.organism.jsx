@@ -22,7 +22,7 @@ function MostSales() {
     },
   ];
   return (
-    <section id="mostSales" className="py-6">
+    <section id="mostSales" className="py-10">
       <div className="md:px-16">
         <h1 className="text-success-10 font-normal text-4xl md:text-6xl">
           The Most Sales at Diverse Food Restaurants{" "}

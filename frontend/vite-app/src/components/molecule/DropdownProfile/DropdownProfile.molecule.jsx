@@ -10,9 +10,7 @@ function DropdownProfile() {
     <Menu as="div" className="relative ml-3">
       <div className="flex pr-8">
         <div className="hidden sm:block px-2">
-           <h1 className="font-semibold">Thomas Annee</h1>
-           <p className="text-end text-sm text-blue-500">Ux Designer</p>
-        </div>
+         </div>
         <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm">
           <span className="absolute -inset-1.5" />
           <span className="sr-only">Open user menu</span>

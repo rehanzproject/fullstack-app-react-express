@@ -25,7 +25,7 @@ function useLoginViewModel() {
     validationSchema: LoginSchema,
     onSubmit: async (values) => {
       try {
-        const res = await postRequest("login", values);
+        const res = await postRequest("user/login", values);
         if (res) {
           toast.success(res.msg, {
             onClose: () => {

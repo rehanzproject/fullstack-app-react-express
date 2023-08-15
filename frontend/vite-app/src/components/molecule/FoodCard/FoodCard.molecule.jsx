@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import RatingIcon from "../../atom/icons/RatingIcon";
 
 function FoodCard({ name, price, pict, rating }) {

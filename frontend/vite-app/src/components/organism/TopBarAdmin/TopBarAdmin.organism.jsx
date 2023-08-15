@@ -43,20 +43,20 @@ function TopBarAdmin() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute z-10 right-0 mt-2 w-80 rounded-md text-gray-700 bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute z-10 right-0 mt-2 w-40 md:w-80 rounded-md text-gray-700 bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item>
                 {({ active }) => (
-                  <div
-                    className={classNames(
-                      active ? "bg-dark-20" : "",
-                      "block w-full p-4 text-sm text-dark-30 "
-                    )}
-                  >
-                    <div className="">
-                      <p className="border-b pb-4">Notification</p>
-                      <p className="text-black">
-                        You don't have any notification right now!
-                      </p>
+                  <div className="p-4">
+                    <h1 className="divide-y divide-dark-20">Notification</h1>
+                    <div
+                      className={classNames(
+                        active ? "bg-dark-20" : "",
+                        "block w-full text-sm text-dark-30 "
+                      )}
+                    >
+                     <div>
+                      <p>You don't Have Notification Right Now!</p>
+                     </div>
                     </div>
                   </div>
                 )}

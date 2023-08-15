@@ -51,7 +51,6 @@ function useFetcherMethod() {
 
   return {
     getRequest,
-    getRequestAuth,
     postRequest,
     updateRequest,
     deleteRequest,
