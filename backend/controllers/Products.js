@@ -8,7 +8,6 @@ export const getProducts = async (req, res) => {
         model: Transaction
       },}
     //   attributes: ["name_transaction", "name_product", "price"  , "desc"]
-    // }
     );
     if (!products) return res.sendStatus(404);
     res.json(products);
