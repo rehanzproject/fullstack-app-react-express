@@ -49,7 +49,7 @@ function useRegisterViewModel() {
           });
         }
       } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(error.message || error.response.data.msg);
       }
     },
   });

@@ -7,6 +7,8 @@ import AdminTemplate from "../../components/templates/Admin.template";
 import AdminAnalystic from "../../components/views/Admin/AdminAnalystic.view";
 import AdminCalendar from "../../components/views/Admin/AdminCalendar.view";
 import AdminProfile from "../../components/views/Admin/AdminProfile.view";
+import DetailFood from "../../components/views/DetailFood.view";
+import UserTemplate from "../../components/templates/User.template";
 
 const RootRouter = () => {
   return (
@@ -15,7 +17,11 @@ const RootRouter = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route element={<UserTemplate />}>
         <Route path="home" element={<HomePage />} />
+
+        <Route path="food/:id" element={<DetailFood />} />    
+        </Route>
         <Route element={<AdminTemplate />}>
           <Route path="/admin/analystic" element={<AdminAnalystic />} />
           <Route path="/admin/calendar" element={<AdminCalendar />} />

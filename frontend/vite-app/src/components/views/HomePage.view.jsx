@@ -12,7 +12,6 @@ function HomePage() {
 
   return (
     <div>
-      <NavbarUser />
       <Advertisement />
       <OurRecommendation />
     </div>
