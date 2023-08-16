@@ -45,7 +45,7 @@ function LoginView() {
             </div>
             <button
               onClick={handleShowPassword}
-              className="absolute inset-y-0 right-4 mb-1"
+              className={`absolute inset-y-0 right-4 mb-1 ${formik.errors.password && "bottom-4"} }`}
             >
               {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}{" "}
             </button>

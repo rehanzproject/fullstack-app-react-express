@@ -69,7 +69,7 @@ function Register() {
             </div>
             <button
               onClick={handleShowPassword}
-              className="absolute inset-y-0 right-4"
+              className={`absolute inset-y-0 right-4 ${formik.errors.password && "bottom-4"}`}
             >
               {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
             </button>
@@ -97,7 +97,7 @@ function Register() {
             )}
             <button
               onClick={handleConfirmPassword}
-              className="absolute inset-y-0 right-4 pt-8"
+              className={`absolute inset-y-0 right-4 ${formik.errors.confPassword && "bottom-0 pt-1"} pt-6`}
             >
               {showConfirmPassword ? (
                 <AiOutlineEye />
