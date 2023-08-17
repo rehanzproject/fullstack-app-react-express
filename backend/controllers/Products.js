@@ -22,7 +22,7 @@ export const getProductByOne = async (req, res) => {
       where: {
         id_product: req.params.id,
       },
-      attributes: ["id_product", "name", "price", "rating"],
+      // attributes: ["id_product", "name_product", "price", "rating", "desc"],
     });
     if (!products) return res.sendStatus(404);
     res.status(200).json(products);
