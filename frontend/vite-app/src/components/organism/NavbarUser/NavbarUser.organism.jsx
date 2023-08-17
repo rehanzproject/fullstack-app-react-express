@@ -13,14 +13,14 @@ function NavbarUser() {
   const [openCart, setopenCart] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   useEffect(() => {
-    window.addEventListener("scroll", () => setScrolling(window.scrollY > 0));
-
+    window.addEventListener("scroll", () => setScrolling(window.scrollY));
     return () => {
       window.removeEventListener("scroll", () =>
         setScrolling(window.scrollY > 0)
       );
     };
   }, []);
+
   const handleClick = (event) => {
     if (event.key === "Enter") {
       console.log("pppppp");
@@ -55,7 +55,7 @@ function NavbarUser() {
         }
   `}
       >
-        <p className="text-dark-30 md:text-sm px-4 md:px-16">
+        <p className="text-dark-30 text-xs md:text-sm px-4 md:px-16">
           Explore good grubs in Diverse Restaurant
         </p>
         <input
@@ -63,7 +63,7 @@ function NavbarUser() {
           name=""
           id=""
           onKeyDown={handleClick}
-          className="px-8 rounded-full outline-none focus:outline-none w-96"
+          className="px-8 rounded-full outline-none focus:outline-none w-52"
           placeholder="Type to search..."
         />
         <SearchIcon className="absolute right-0 items-center mr-6 my-2" />
@@ -75,7 +75,7 @@ function NavbarUser() {
           onClick={() => setopenCart(!openCart)}
           className="relative rounded-full p-2 hover:bg-dark-20"
         >
-          <CartIcon width="30" height="30" />
+          <CartIcon width="36" height="36" />
           <AnimatePresence>
             {openCart && (
               <div>
@@ -85,7 +85,7 @@ function NavbarUser() {
                   animate={{ y: 0 }}
                   exit={{ y: "100%" }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="flex rounded-xl md:hidden fixed bottom-0 left-0 w-full h-96 bg-white"
+                  className="flex rounded-xl md:hidden fixed bottom-0 left-0 w-screen h-96 bg-white"
                 >
                   {" "}
                   <div
@@ -102,7 +102,7 @@ function NavbarUser() {
                     </p>
                   </div>
                 </motion.div>
-
+              
                 {/* Large */}
                 <div className="absolute hidden rounded-xl shadow-xl md:flex bg-white right-0 w-96 h-96 my-4">
                   <div className="flex flex-col items-center gap-4 justify-center text-center">
@@ -116,6 +116,9 @@ function NavbarUser() {
               </div>
             )}
           </AnimatePresence>
+          <div className="absolute top-0 right-0 bg-red-500 text-xs rounded-full px-2 py-1 font-bold text-white">
+            {1+1}
+          </div>
         </div>
       </div>
     </div>
