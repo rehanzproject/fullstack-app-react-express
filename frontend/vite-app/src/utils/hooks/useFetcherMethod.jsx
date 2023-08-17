@@ -21,7 +21,7 @@ function useFetcherMethod() {
       }
       return res.data;
     } catch (error) {
-      toast.error(error.response.data);
+      toast.error(error.message || error.response.data);
     }
   };
   const postRequest = async (url, values) => {

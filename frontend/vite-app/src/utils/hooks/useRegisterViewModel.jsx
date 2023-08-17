@@ -40,7 +40,7 @@ function useRegisterViewModel() {
     validationSchema: RegisterSchema,
     onSubmit: async (values) => {
       try {
-        const res = await postRequest("user", values);
+        const res = await postRequest("/user", values);
         if (res) {
           toast.success(res.msg, {
             onClose: () => {
