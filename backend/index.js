@@ -31,7 +31,7 @@ app.use(
     credentials: true,
     origin: [
       "http://localhost:5173",
-      "https://fullstack-app-react-express.vercel.app/",
+      "https://diverse-restaurant.vercel.app/",
     ],
   })
 );
