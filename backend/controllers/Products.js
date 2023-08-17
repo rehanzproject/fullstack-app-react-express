@@ -20,9 +20,9 @@ export const getProductByOne = async (req, res) => {
   try {
     const products = await Products.findOne({
       where: {
-        id: req.params.id,
+        id_product: req.params.id,
       },
-      attributes: ["id", "name", "price", "rating"],
+      attributes: ["id_product", "name", "price", "rating"],
     });
     if (!products) return res.sendStatus(404);
     res.status(200).json(products);
