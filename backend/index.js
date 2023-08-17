@@ -10,6 +10,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 import { options } from "./routes/optionSwagger.js";
 import Products from "./models/ProductModel.js";
 import Transaction from "./models/TransactionModel.js";
+import Users from "./models/UserModel.js";
 const specs = swaggerJsdoc(options);
 
 dotenv.config();
@@ -20,6 +21,7 @@ try {
   console.log("Database Connected...");
   // await Products.sync()
   // await Transaction.sync()
+  // await Users.sync()
 } catch (error) {
   console.error(error);
 }
