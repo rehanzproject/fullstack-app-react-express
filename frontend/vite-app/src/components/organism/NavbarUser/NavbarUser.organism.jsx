@@ -5,14 +5,55 @@ import DropdownProfile from "../../molecule/DropdownProfile/DropdownProfile.mole
 import CartIcon from "../../atom/icons/CartIcon";
 import XIcon from "../../atom/icons/XIcon";
 import { motion, AnimatePresence } from "framer-motion";
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import CartCard from "../../molecule/CartCard/CartCard.molecule";
+import { formatNumber, getTotalProduct } from "../../../utils/helper/helperUtils";
+
 
 function NavbarUser() {
   const [openCart, setopenCart] = useState(false);
   const [scrolling, setScrolling] = useState(false);
-  useEffect(() => {
+//  const items = [
+//   {
+//     id: 1,
+//     name: "Burger",
+//     qty: 1,
+//     price: 17000,
+//   },
+//   {
+//     id: 2,
+//     name: "Burger",
+//     qty: 1,
+//     price: 17000,
+//   },
+//   {
+//     id: 3,
+//     name: "Burger",
+//     qty: 1,
+//     price: 17000,
+//   },
+//   {
+//     id: 4,
+//     name: "Burger",
+//     qty: 1,
+//     price: 17000,
+//   },
+//   {
+//     id: 5,
+//     name: "Burger",
+//     qty: 1,
+//     price: 17000,
+//   },
+//   {
+//     id: 6,
+//     name: "Burger",
+//     qty: 2,
+//     price: 17000,
+//   },
+// ]
+
+const cart = JSON.parse(localStorage.getItem('cartstorage'))
+useEffect(() => {
+    // localStorage.setItem('cartstorage',  JSON.stringify(items))
     window.addEventListener("scroll", () => setScrolling(window.scrollY));
     return () => {
       window.removeEventListener("scroll", () =>
@@ -94,15 +135,36 @@ function NavbarUser() {
                   >
                     <XIcon />
                   </div>
-                  <div className="flex flex-col justify-center items-center w-full h-full gap-4 text-center">
-                    <CartIcon fill="red" />
-                    <p className="text-dark-30 text-sm">
-                      Your cart is empty. Let's discover our collections of
-                      popular dishes.
-                    </p>
-                  </div>
+                  {cart ? (
+                    <div className="w-full p-4">
+                      <h1 className="text-lg font-bold">Your Order</h1>
+                      <div className="h-64 overflow-y-auto">
+                        {cart?.map((items) => (
+                          <CartCard key={items.id} {...items} />
+                        ))}
+                      </div>
+
+                      <div className="border-t font-bold">
+                        <div className="flex justify-between">
+                          <h1>Total Price</h1>
+                          <p className="text-lg">IDR {formatNumber(getTotalProduct(cart))} </p>
+                        </div>
+                        <button className="w-full rounded-full bg-green-600 py-2 text-white">
+                          Order Now!
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col justify-center items-center w-full h-full gap-4 text-center">
+                      <CartIcon fill="red" />
+                      <p className="text-dark-30 text-sm">
+                        Your cart is empty. Let's discover our collections of
+                        popular dishes.
+                      </p>
+                    </div>
+                  )}
                 </motion.div>
-              
+
                 {/* Large */}
                 <div className="absolute hidden rounded-xl shadow-xl md:flex bg-white right-0 w-96 h-96 my-4">
                   <div className="flex flex-col items-center gap-4 justify-center text-center">
@@ -117,7 +179,7 @@ function NavbarUser() {
             )}
           </AnimatePresence>
           <div className="absolute top-0 right-0 bg-red-500 text-xs rounded-full px-2 py-1 font-bold text-white">
-            {1+1}
+            {1 + 1}
           </div>
         </div>
       </div>
