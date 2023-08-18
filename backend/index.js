@@ -25,12 +25,6 @@ try {
 } catch (error) {
   console.error(error);
 }
-app.use(
-  cors({
-    credentials: true,
-    origin: ["http://localhost:5173", "https://diverse-restaurant.vercel.app/"],
-  })
-);
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -39,6 +33,12 @@ app.use((req, res, next) => {
   );
   next();
 });
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:5173", "https://diverse-restaurant.vercel.app/"],
+  })
+);
 app.use(fileUpload());
 app.use(cookieParser());
 app.use(express.json());
