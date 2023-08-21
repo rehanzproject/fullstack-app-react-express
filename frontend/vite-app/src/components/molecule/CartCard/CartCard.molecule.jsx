@@ -6,28 +6,39 @@ import { formatNumber } from "../../../utils/helper/helperUtils";
 import { useBoundStore } from "../../../config/zustand/useBoundStore";
 
 function CartCard({ id, name, qty, price }) {
+  const [openLegend, setOpenLegend] = useState(false);
   const convert = formatNumber(price);
-  const addQty = useBoundStore((state) => state.addQuantityProduct);
+  const addQty = useBoundStore((state) => state.increaseQuantityProduct);
+  const minQty = useBoundStore((state) => state.decreaseQuantityProduct);
+  const handleMinusClick = (id) => minQty(id);
+  const handlePlusClick = (id) => addQty(id);
 
-  const handleMinusClick = (id) => {};
-
-  const handlePlusClick = (id) => {
-    addQty(id);
-  };
-
-  const [items, setItems] = useState("");
   return (
-    <div className="pt-4">
-      <p className="font-semibold">{name}</p>
+    <div className="py-4">
+      <p className="font-semibold text-sm">{name}</p>
       <div className="flex justify-between items-center">
-        <div className="flex gap-2">
-          <NotesIcon />
-          <p className="text-green-500 font-bold text-sm">Notes</p>
+        <div onClick={() => setOpenLegend(true)} className="flex gap-2">
+          {openLegend ? (
+            <fieldset>
+              <legend> test</legend>
+              <input type="text" name="" id="" />
+            </fieldset>
+          ) : (
+            <>
+              <NotesIcon />
+              <p className="text-success-20 font-bold text-sm">Notes</p>
+            </>
+          )}
         </div>
         <div className="flex items-center gap-8">
-          <MinusIcon qty={qty} onClick={() => handleMinusClick(id)} />
+          <MinusIcon
+            className={`${
+              qty <= 1 ? "cursor-not-allowed fill-gray-200" : "fill-green-500"
+            }`}
+            onClick={() => qty > 1 && handleMinusClick(id)}
+          />
           <p>{qty}</p>
-          <PlusIcon onClick={handlePlusClick} />
+          <PlusIcon onClick={() => handlePlusClick(id)} />
         </div>
         <p className="text-sm">{convert}</p>
       </div>

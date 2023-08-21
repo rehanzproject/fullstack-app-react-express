@@ -4,14 +4,18 @@ export const useBoundStore = create(
   persist(
     (set) => ({
       items: [],
-      addQuantityProduct: (id) => (state) => {
-        console.log(id);
-        const updatedItems = state.items.map((item) =>
-          item.id === id ? { ...item, qty: (item.qty || 1) + 1 } : item
-        );
-        set({ items: updatedItems });
-      },
-
+      increaseQuantityProduct: (id) =>
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id ? { ...item, qty: item.qty + 1 } : item
+          ),
+        })),
+      decreaseQuantityProduct: (id) =>
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id ? { ...item, qty: item.qty - 1 } : item
+          ),
+        })),
       addProduct: (product) =>
         set((state) => ({ items: [...state.items, product] })),
     }),

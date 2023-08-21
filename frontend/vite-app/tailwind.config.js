@@ -11,6 +11,8 @@ export default {
         "dark-20": "#DEE4EE",
         "dark-30": "#8A99AF",
         "success-10": "#00A890",
+        "success-20": "#00880D",
+        
       }
     },
   },

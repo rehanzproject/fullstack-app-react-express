@@ -21,7 +21,7 @@ function FoodCardRecommend(props) {
             className="rounded-xl object-center object-cover w-full h-full"
           />
         </Link>
-        <div className="absolute flex bottom-0 right-0  bg-white px-4 m-4 rounded-full">
+        <div className="absolute gap-2 flex items-center bottom-0 right-0 text-sm bg-white px-4 m-4 rounded-full">
           <RatingIcon /> {rating}
         </div>
       </div>
