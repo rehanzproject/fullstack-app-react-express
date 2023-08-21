@@ -3,36 +3,19 @@ import PlusIcon from "../../atom/icons/PlusIcon";
 import MinusIcon from "../../atom/icons/MinusIcon";
 import NotesIcon from "../../atom/icons/NotesIcon";
 import { formatNumber } from "../../../utils/helper/helperUtils";
+import { useBoundStore } from "../../../config/zustand/useBoundStore";
 
 function CartCard({ id, name, qty, price }) {
   const convert = formatNumber(price);
-  const storedItems = JSON.parse(localStorage.getItem("cartstorage")) || [];
-  const handleMinusClick = (itemId) => {
-    const updatedItems = storedItems.map((item) => {
-      if (item.id === itemId && item.qty > 0) {
-        return { ...item, qty: item.qty - 1 };
-      }
-      return item;
-    });
+  const addQty = useBoundStore((state) => state.addQuantityProduct);
 
-    localStorage.setItem("cartstorage", JSON.stringify(updatedItems));
-    // Update state to trigger re-render
-    setItems(updatedItems);
-  };
-  const handlePlusClick = (itemId) => {
-    const updatedItems = storedItems.map((item) => {
-      if (item.id === itemId && item.qty > 0) {
-        return { ...item, qty: item.qty + 1 };
-      }
-      return item;
-    });
+  const handleMinusClick = (id) => {};
 
-    localStorage.setItem("cartstorage", JSON.stringify(updatedItems));
-    // Update state to trigger re-render
-    setItems(updatedItems);
+  const handlePlusClick = (id) => {
+    addQty(id);
   };
 
-  const [items, setItems] = useState(storedItems);
+  const [items, setItems] = useState("");
   return (
     <div className="pt-4">
       <p className="font-semibold">{name}</p>
@@ -42,12 +25,9 @@ function CartCard({ id, name, qty, price }) {
           <p className="text-green-500 font-bold text-sm">Notes</p>
         </div>
         <div className="flex items-center gap-8">
-          <MinusIcon
-            qty={qty}
-            onClick={() => handleMinusClick(id)}
-          />
+          <MinusIcon qty={qty} onClick={() => handleMinusClick(id)} />
           <p>{qty}</p>
-          <PlusIcon onClick={() => handlePlusClick(id)} />
+          <PlusIcon onClick={handlePlusClick} />
         </div>
         <p className="text-sm">{convert}</p>
       </div>

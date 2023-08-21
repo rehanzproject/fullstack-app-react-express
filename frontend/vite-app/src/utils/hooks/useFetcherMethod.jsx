@@ -1,13 +1,13 @@
 import axios from "axios";
-import { useBoundStore } from "../../config/zustand/boundStore";
 import { toast } from "react-toastify";
+import { useTokenStore } from "../../config/zustand/tokenStore/useTokenStore";
 
 function useFetcherMethod() {
-  const token = useBoundStore((state) => state.token);
+  const token = useTokenStore((state) => state.token);
   const config = {
     withCredentials: true,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${""}`,
     },
   };
   const getRequest = async (url) => {

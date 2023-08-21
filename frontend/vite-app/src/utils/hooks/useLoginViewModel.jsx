@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import useFetcherMethod from "./useFetcherMethod";
-import { useBoundStore } from "../../config/zustand/boundStore";
+import { useTokenStore } from "../../config/zustand/tokenStore/useTokenStore";
+
 function useLoginViewModel() {
   const { postRequest } = useFetcherMethod();
   const navigate = useNavigate();
+  const updateToken = useTokenStore((state) => state.updateToken);
+
   const [showPassword, setShowPassword] = useState(false);
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email!").required("Email Required!"),
@@ -16,7 +19,7 @@ function useLoginViewModel() {
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
-  const updateToken = useBoundStore((state) => state.updateToken)
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -32,7 +35,7 @@ function useLoginViewModel() {
               navigate("/home");
             },
           });
-          updateToken(res.accessToken)
+          updateToken(res.accessToken);
         }
       } catch (error) {
         toast.error(error.response || error.message);

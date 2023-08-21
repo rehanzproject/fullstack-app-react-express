@@ -6,54 +6,17 @@ import CartIcon from "../../atom/icons/CartIcon";
 import XIcon from "../../atom/icons/XIcon";
 import { motion, AnimatePresence } from "framer-motion";
 import CartCard from "../../molecule/CartCard/CartCard.molecule";
-import { formatNumber, getTotalProduct } from "../../../utils/helper/helperUtils";
-
+import {
+  formatNumber,
+  getTotalProduct,
+} from "../../../utils/helper/helperUtils";
+import { useBoundStore } from "../../../config/zustand/useBoundStore";
 
 function NavbarUser() {
   const [openCart, setopenCart] = useState(false);
   const [scrolling, setScrolling] = useState(false);
-//  const items = [
-//   {
-//     id: 1,
-//     name: "Burger",
-//     qty: 1,
-//     price: 17000,
-//   },
-//   {
-//     id: 2,
-//     name: "Burger",
-//     qty: 1,
-//     price: 17000,
-//   },
-//   {
-//     id: 3,
-//     name: "Burger",
-//     qty: 1,
-//     price: 17000,
-//   },
-//   {
-//     id: 4,
-//     name: "Burger",
-//     qty: 1,
-//     price: 17000,
-//   },
-//   {
-//     id: 5,
-//     name: "Burger",
-//     qty: 1,
-//     price: 17000,
-//   },
-//   {
-//     id: 6,
-//     name: "Burger",
-//     qty: 2,
-//     price: 17000,
-//   },
-// ]
-
-const cart = JSON.parse(localStorage.getItem('cartstorage'))
-useEffect(() => {
-    // localStorage.setItem('cartstorage',  JSON.stringify(items))
+  const items = useBoundStore((state) => state.items);
+  useEffect(() => {
     window.addEventListener("scroll", () => setScrolling(window.scrollY));
     return () => {
       window.removeEventListener("scroll", () =>
@@ -61,7 +24,6 @@ useEffect(() => {
       );
     };
   }, []);
-
   const handleClick = (event) => {
     if (event.key === "Enter") {
       console.log("pppppp");
@@ -135,11 +97,11 @@ useEffect(() => {
                   >
                     <XIcon />
                   </div>
-                  {cart ? (
+                  {items.length ? (
                     <div className="w-full p-4">
                       <h1 className="text-lg font-bold">Your Order</h1>
                       <div className="h-64 overflow-y-auto">
-                        {cart?.map((items) => (
+                        {items?.map((items) => (
                           <CartCard key={items.id} {...items} />
                         ))}
                       </div>
@@ -147,7 +109,9 @@ useEffect(() => {
                       <div className="border-t font-bold">
                         <div className="flex justify-between">
                           <h1>Total Price</h1>
-                          <p className="text-lg">IDR {formatNumber(getTotalProduct(cart))} </p>
+                          <p className="text-lg">
+                            IDR {formatNumber(getTotalProduct(items))}{" "}
+                          </p>
                         </div>
                         <button className="w-full rounded-full bg-green-600 py-2 text-white">
                           Order Now!
