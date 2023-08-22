@@ -1,15 +1,19 @@
 import React from "react";
 import RatingIcon from "../../atom/icons/RatingIcon";
+import PlusIcon from "../../atom/icons/PlusIcon";
+import MinusIcon from "../../atom/icons/MinusIcon";
+
 import { Link } from "react-router-dom";
 import { useBoundStore } from "../../../config/zustand/useBoundStore";
 import { formatNumber } from "../../../utils/helper/helperUtils";
-function FoodCardRecommend(props) {
-  const { pict, name, type, rating, price } = props;
-  const addProduct = useBoundStore((state) => state.addProduct);
 
-  const addToCart = () => {
-    addProduct({ ...props, qty: 1 });
-  };
+function FoodCardRecommend(props) {
+  const { id, pict, name, type, rating, price } = props;
+  const addProduct = useBoundStore((state) => state.addProduct);
+  const items = useBoundStore((state) => state.items);
+  const isProductInCart = items.some((item) => item.id === id);
+
+  const addToCart = () => addProduct({ ...props, qty: 1 });
 
   return (
     <div className="flex flex-col md:flex-row border rounded-xl p-2 md:block gap-4">
@@ -31,12 +35,25 @@ function FoodCardRecommend(props) {
           <p className="text-xs">{type}</p>
           <p>{formatNumber(price)}</p>
         </div>
-        <button
-          onClick={addToCart}
-          className="border border-green-500 rounded-full w-full py-2"
-        >
-          Add
-        </button>
+        {isProductInCart ? (
+          <div className="flex justify-between">
+            <div>
+              <p className="text-sm text-success-20">Notes</p>
+            </div>
+            <div className="flex">
+              <PlusIcon />
+              <p>{1}</p>
+              <MinusIcon />
+            </div>
+          </div>
+        ) : (
+          <button
+            onClick={addToCart}
+            className="border border-green-500 rounded-full w-full py-2"
+          >
+            Add
+          </button>
+        )}
       </div>
     </div>
   );

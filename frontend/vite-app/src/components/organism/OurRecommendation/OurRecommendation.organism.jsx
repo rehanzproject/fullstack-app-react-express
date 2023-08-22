@@ -24,7 +24,7 @@ function OurRecommendation() {
     {
       id: uuidv4(),
       name: "Burger",
-      pict: burger3,
+      pict: burger,
       type: "Fast Food",
       rating: 4.7,
       price: 20000,
@@ -90,7 +90,7 @@ function OurRecommendation() {
     <div>
       <div className="p-4 md:px-16">
         <h1 className="text-2xl">Our Recommendation</h1>
-        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-16">
           {list.map((item, i) => (
             <FoodCardRecommend key={item.id} {...item} />
           ))}

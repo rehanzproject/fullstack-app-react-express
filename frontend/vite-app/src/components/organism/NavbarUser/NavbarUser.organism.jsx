@@ -11,6 +11,7 @@ import {
   getTotalProduct,
 } from "../../../utils/helper/helperUtils";
 import { useBoundStore } from "../../../config/zustand/useBoundStore";
+import SidebarUser from "../SidebarUser/SidebarUser.organism";
 
 function NavbarUser() {
   const [openCart, setopenCart] = useState(false);
@@ -21,14 +22,13 @@ function NavbarUser() {
     (e) => {
       if (y > window.scrollY) {
         setScrollDirection("Up");
-       } else if (y < window.scrollY) {
+      } else if (y < window.scrollY) {
         setScrollDirection("Down");
       }
       setY(window.scrollY);
     },
     [y]
   );
-
   useEffect(() => {
     window.addEventListener("scroll", handleNavigation);
 
@@ -47,7 +47,8 @@ function NavbarUser() {
       <div className="bg-gray-100 p-4 border-b">
         <div className="flex items-center">
           <div className="text-2xl font-bold">
-            <h1 className="px-4 md:px-12">Diverse Food</h1>
+            <h1 className="px-8 md:px-4">Diverse Food</h1>
+            <SidebarUser />
           </div>
           {/* Large Mode */}
           <div className="hidden lg:flex relative">
@@ -63,13 +64,16 @@ function NavbarUser() {
           </div>
         </div>
       </div>
-      <div
-        className={`bg-gray-50 lg:hidden justify-between items-center flex py-4 ${
-          scrollDirection === "Up"
-            ? "opacity-100 translate-y-0 transition-transform duration-300 ease-in-out"
-            : "opacity-0 -translate-y-full"
-        }
-  `}
+      {/* small */}
+      <motion.div
+        initial={{ y: "100%" , opacity: 0 }}
+        animate={{
+          opacity: scrollDirection === "Up" ? 1 : 0,
+          y: scrollDirection === "Up" ? "0%" : "-100%", // You can include y animation here if needed
+        }}
+        exit={{ y: "100%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="bg-gray-50 lg:hidden justify-between items-center flex py-4"
       >
         <p className="text-dark-30 text-xs md:text-sm px-4 md:px-16">
           Explore good grubs in Diverse Restaurant
@@ -84,7 +88,7 @@ function NavbarUser() {
           placeholder="Type to search..."
         />
         <SearchIcon className="absolute right-0 items-center mr-6 my-2" />
-      </div>
+      </motion.div>
 
       <div className="absolute right-0 top-0 flex py-4 px-12">
         <DropdownProfile />
