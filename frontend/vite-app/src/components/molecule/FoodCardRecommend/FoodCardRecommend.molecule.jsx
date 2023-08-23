@@ -6,13 +6,15 @@ import MinusIcon from "../../atom/icons/MinusIcon";
 import { Link } from "react-router-dom";
 import { useBoundStore } from "../../../config/zustand/useBoundStore";
 import { formatNumber } from "../../../utils/helper/helperUtils";
+import NotesIcon from "../../atom/icons/NotesIcon";
 
 function FoodCardRecommend(props) {
   const { id, pict, name, type, rating, price } = props;
-  const addProduct = useBoundStore((state) => state.addProduct);
-  const items = useBoundStore((state) => state.items);
+  const { items , addProduct , increaseQuantityProduct , decreaseQuantityProduct ,deleteProduct } = useBoundStore((state) => state);
   const isProductInCart = items.some((item) => item.id === id);
-
+  const foundProduct = items.find((item) => item.id === id);
+  const productQuantity = foundProduct ? foundProduct.qty : 0; // Get the quantity from the found product
+  
   const addToCart = () => addProduct({ ...props, qty: 1 });
 
   return (
@@ -37,13 +39,14 @@ function FoodCardRecommend(props) {
         </div>
         {isProductInCart ? (
           <div className="flex justify-between">
-            <div>
-              <p className="text-sm text-success-20">Notes</p>
-            </div>
             <div className="flex">
-              <PlusIcon />
-              <p>{1}</p>
-              <MinusIcon />
+              <NotesIcon />
+              <p className="hidden md:flex text-sm text-success-20">Notes</p>
+            </div>
+            <div className="flex items-center gap-2 ">
+              <PlusIcon onClick={()=>increaseQuantityProduct(id)} />
+              <p>{productQuantity}</p>
+              <MinusIcon onClick={()=>productQuantity <= 1  ? deleteProduct(id): decreaseQuantityProduct(id)} className='fill-success-20' />
             </div>
           </div>
         ) : (

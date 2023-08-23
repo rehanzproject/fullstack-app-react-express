@@ -10,38 +10,18 @@ import {
   formatNumber,
   getTotalProduct,
 } from "../../../utils/helper/helperUtils";
-import { useBoundStore } from "../../../config/zustand/useBoundStore";
 import SidebarUser from "../SidebarUser/SidebarUser.organism";
+import useNavbarViewModel from "../../../utils/hooks/useNavbarViewModel";
 
 function NavbarUser() {
-  const [openCart, setopenCart] = useState(false);
-  const [y, setY] = useState(document.scrollingElement.scrollHeight);
-  const [scrollDirection, setScrollDirection] = useState("");
-  const items = useBoundStore((state) => state.items);
-  const handleNavigation = useCallback(
-    (e) => {
-      if (y > window.scrollY) {
-        setScrollDirection("Up");
-      } else if (y < window.scrollY) {
-        setScrollDirection("Down");
-      }
-      setY(window.scrollY);
-    },
-    [y]
-  );
-  useEffect(() => {
-    window.addEventListener("scroll", handleNavigation);
-
-    return () => {
-      window.removeEventListener("scroll", handleNavigation);
-    };
-  }, [handleNavigation]);
-
-  const handleClick = (event) => {
-    if (event.key === "Enter") {
-      console.log("pppppp");
-    }
-  };
+  const {
+    handleOrder,
+    handleClick,
+    scrollDirection,
+    setopenCart,
+    openCart,
+    items,
+  } = useNavbarViewModel();
   return (
     <div className={`sticky top-0 w-full z-50`}>
       <div className="bg-gray-100 p-4 border-b">
@@ -66,7 +46,7 @@ function NavbarUser() {
       </div>
       {/* small */}
       <motion.div
-        initial={{ y: "100%" , opacity: 0 }}
+        initial={{ y: "100%", opacity: 0 }}
         animate={{
           opacity: scrollDirection === "Up" ? 1 : 0,
           y: scrollDirection === "Up" ? "0%" : "-100%", // You can include y animation here if needed
@@ -114,7 +94,7 @@ function NavbarUser() {
                   {" "}
                   <div
                     onClick={() => setopenCart(false)}
-                    className="absolute flex -mt-12 bg-gray-100 right-4 p-2 rounded-full"
+                    className="absolute flex -mt-12 bg-gray-100 hover:bg-gray-300 hover:cursor-pointer right-4 p-2 rounded-full"
                   >
                     <XIcon />
                   </div>
@@ -134,7 +114,10 @@ function NavbarUser() {
                             IDR {formatNumber(getTotalProduct(items))}{" "}
                           </p>
                         </div>
-                        <button className="w-full rounded-full bg-success-20 py-2 text-white">
+                        <button
+                          onClick={handleOrder}
+                          className="w-full rounded-full bg-success-20 py-2 text-white"
+                        >
                           Order Now!
                         </button>
                       </div>
@@ -168,7 +151,10 @@ function NavbarUser() {
                             IDR {formatNumber(getTotalProduct(items))}{" "}
                           </p>
                         </div>
-                        <button className="w-full rounded-full bg-success-20 py-2 text-white">
+                        <button
+                          onClick={handleOrder}
+                          className="w-full rounded-full bg-success-20 py-2 text-white"
+                        >
                           Order Now!
                         </button>
                       </div>

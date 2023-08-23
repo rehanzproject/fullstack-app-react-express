@@ -18,6 +18,10 @@ export const useBoundStore = create(
         })),
       addProduct: (product) =>
         set((state) => ({ items: [...state.items, product] })),
+      deleteProduct: (product) =>
+        set((state) => ({
+          items: state.items.filter((item) => item.id !== product),
+        })),
     }),
     {
       name: "cartstorage-cache",

@@ -53,7 +53,7 @@ function SidebarUser() {
           }}
           exit={{
             zIndex: 0,
-            x: 0,
+            x: -100,
             transition: {
               type: "tween",
               duration: 0.3, // Adjust the duration

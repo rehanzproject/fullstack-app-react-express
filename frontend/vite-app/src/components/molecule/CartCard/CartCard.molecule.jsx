@@ -8,10 +8,11 @@ import { useBoundStore } from "../../../config/zustand/useBoundStore";
 function CartCard({ id, name, qty, price }) {
   const [openLegend, setOpenLegend] = useState(false);
   const convert = formatNumber(price);
-  const addQty = useBoundStore((state) => state.increaseQuantityProduct);
-  const minQty = useBoundStore((state) => state.decreaseQuantityProduct);
-  const handleMinusClick = (id) => minQty(id);
-  const handlePlusClick = (id) => addQty(id);
+  const { increaseQuantityProduct, decreaseQuantityProduct, deleteProduct } =
+    useBoundStore((state) => state);
+
+  const handleMinusClick = (id) => decreaseQuantityProduct(id);
+  const handlePlusClick = (id) => increaseQuantityProduct(id);
 
   return (
     <div className="py-4">
@@ -20,7 +21,7 @@ function CartCard({ id, name, qty, price }) {
         <div onClick={() => setOpenLegend(true)} className="flex gap-2">
           {openLegend ? (
             <fieldset>
-              <legend> test</legend>
+              <legend>test</legend>
               <input type="text" name="" id="" />
             </fieldset>
           ) : (
@@ -32,10 +33,10 @@ function CartCard({ id, name, qty, price }) {
         </div>
         <div className="flex items-center gap-8">
           <MinusIcon
-            className={`${
-              qty <= 1 ? "cursor-not-allowed fill-gray-200" : "fill-green-500"
-            }`}
-            onClick={() => qty > 1 && handleMinusClick(id)}
+            className="fill-success-20"
+            onClick={() =>
+              qty <= 1 ? deleteProduct(id) : handleMinusClick(id)
+            }
           />
           <p>{qty}</p>
           <PlusIcon onClick={() => handlePlusClick(id)} />
