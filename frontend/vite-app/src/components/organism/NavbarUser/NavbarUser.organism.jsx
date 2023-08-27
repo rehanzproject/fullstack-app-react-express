@@ -160,7 +160,7 @@ function NavbarUser() {
                       </div>
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center gap-4 justify-center text-center">
+                    <div className="flex flex-col items-center gap-4 justify-center text-center h-96">
                       <CartIcon fill="red" />
                       <p className="text-dark-30 text-sm">
                         Your cart is empty. Let's discover our collections of

@@ -10,6 +10,7 @@ import AdminProfile from "../../components/views/Admin/AdminProfile.view";
 import DetailFood from "../../components/views/DetailFood.view";
 import UserTemplate from "../../components/templates/User.template";
 import OrderPage from "../../components/views/OrderPage.view";
+import AdminProduct from "../../components/views/Admin/AdminProduct.view";
 
 const RootRouter = () => {
   return (
@@ -18,12 +19,13 @@ const RootRouter = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="order" element={<OrderPage />} />
         <Route element={<UserTemplate />}>
         <Route path="home" element={<HomePage />} />
-        <Route path="order" element={<OrderPage />} />
         <Route path="food/:id" element={<DetailFood />} />    
         </Route>
         <Route element={<AdminTemplate />}>
+          <Route path="/admin/product" element={<AdminProduct />} />
           <Route path="/admin/analystic" element={<AdminAnalystic />} />
           <Route path="/admin/calendar" element={<AdminCalendar />} />
           <Route path="/admin/profile" element={<AdminProfile />} />

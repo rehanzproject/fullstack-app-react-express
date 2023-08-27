@@ -20,10 +20,10 @@ function FoodCardRecommend(props) {
   return (
     <div className="flex flex-col md:flex-row border rounded-xl p-2 md:block gap-4">
       <div className="relative h-[200px] md:w-[200px] w-full">
-        <Link to={`/${name}`}>
+        <Link to={`/food/${name}-${id}`}>
           <img
             src={pict}
-            alt=""
+            alt={name}
             className="rounded-xl object-center object-cover w-full h-full"
           />
         </Link>

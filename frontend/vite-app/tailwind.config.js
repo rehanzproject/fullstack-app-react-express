@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -12,10 +9,8 @@ export default {
         "dark-30": "#8A99AF",
         "success-10": "#00A890",
         "success-20": "#00880D",
-        
-      }
+      },
     },
   },
-  plugins: [require('flowbite/plugin')],
-}
-
+  plugins: [require("flowbite/plugin")],
+};

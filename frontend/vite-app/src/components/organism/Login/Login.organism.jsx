@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import useLoginViewModel  from "../../../utils/hooks/useLoginViewModel";
+import useLoginViewModel from "../../../utils/hooks/useLoginViewModel";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import EmailIcon from "../../atom/icons/EmailIcon";
 import PadLockIcon from "../../atom/icons/PadLockIcon";
+import GoogleIcon from "../../atom/icons/GoogleIcon";
+import FacebookIcon from "../../atom/icons/FacebookIcon";
 function LoginView() {
   const { formik, showPassword, handleShowPassword } = useLoginViewModel();
   return (
@@ -45,7 +47,9 @@ function LoginView() {
             </div>
             <button
               onClick={handleShowPassword}
-              className={`absolute inset-y-0 right-4 mb-1 ${formik.errors.password && "bottom-4"} }`}
+              className={`absolute inset-y-0 right-4 mb-1 ${
+                formik.errors.password && "bottom-4"
+              } }`}
             >
               {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}{" "}
             </button>
@@ -66,6 +70,22 @@ function LoginView() {
           <Link to="/register" className="text-blue-400">
             Register Here
           </Link>
+        </div>
+        <div className="flex flex-col">
+          <p>Or</p>
+          <div className="flex gap-4 py-2 pr-2 items-center justify-center border-blue-500 border rounded-full">
+           
+            <GoogleIcon />
+            <button className="rounded-full text-center">
+              Login With Google
+            </button>
+          </div>
+          <div className="flex gap-2 my-4 items-center justify-center bg-blue-600 hover:border-white  rounded-full">
+          <FacebookIcon />
+            <button className="rounded-full py-2 text-white">
+              Login With Facebook
+            </button>
+            </div>
         </div>
       </div>
     </div>

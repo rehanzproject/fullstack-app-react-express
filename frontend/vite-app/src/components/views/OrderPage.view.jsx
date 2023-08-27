@@ -7,8 +7,8 @@ function OrderPage() {
         
     }]
   return (
-    <div className="flex justify-center h-screen">
-      <div className="w-96 border">
+    <div className="flex justify-center">
+      <div className="border">
         <div className="text-center">
           <h1 className="text-lg">Method Payment</h1>
         </div>

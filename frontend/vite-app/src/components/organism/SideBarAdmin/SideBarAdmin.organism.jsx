@@ -7,6 +7,7 @@ import LogoutIcon from "../../atom/icons/LogoutIcon";
 import LogoTailIcon from "../../atom/icons/LogoTailIcon";
 import XLogo from "../../atom/icons/XIcon";
 import { motion, AnimatePresence } from "framer-motion";
+import BurgerIcon from "../../atom/icons/BurgerIcon";
 function SideBarAdmin() {
   const [open, setOpen] = useState(false);
   const nav = [
@@ -14,6 +15,12 @@ function SideBarAdmin() {
       icon: <FourSquareIcon />,
       name: "Dashboard",
       href: "/admin/analystic",
+    },
+
+    {
+      icon: <BurgerIcon />,
+      name: "Product",
+      href: "/admin/product",
     },
     {
       icon: <CalendarIcon />,
@@ -84,21 +91,44 @@ function SideBarAdmin() {
           </motion.div>
         </AnimatePresence>
       </motion.div>
-      <div className={`${open ? "" : "hidden"} p-4`}>
-        <div className="flex items-end justify-between font-bold text-base text-dark-20 gap-2">
-          <LogoTailIcon />
-          <h1 className="pr-12">Diverse Admin</h1>
-          <XLogo onClick={() => setOpen(!open)} />
-        </div>
-        <div className="py-8">
-          <p className="text-dark-20">MENU</p>
-        </div>
-        <div className="flex flex-col gap-4">
-          {nav.map((list) => (
-            <DropdownMenu key={list.name} {...list} />
-          ))}
-        </div>
-      </div>
+      <AnimatePresence>
+        <motion.div    key={open ? "open" : "closed"}
+          initial={{ x: -100 }} // Initial x position
+          animate={{
+            x: 0, // Animate x position
+            zIndex: 1,
+            transition: {
+              type: "tween",
+              duration: 0.3, // Adjust the duration
+              ease: "easeInOut", // Use easeInOut for ease-in-out transition
+            },
+          }}
+          exit={{
+            zIndex: 0,
+            x: -100,
+            transition: {
+              type: "tween",
+              duration: 0.3, // Adjust the duration
+              ease: "easeInOut", // Use easeInOut for ease-in-out transition
+            },
+          }}>
+          <div className={`${open ? "" : "hidden"} p-4`}>
+            <div className="flex items-end justify-between font-bold text-base text-dark-20 gap-2">
+              <LogoTailIcon />
+              <h1 className="pr-12">Diverse Admin</h1>
+              <XLogo onClick={() => setOpen(!open)} />
+            </div>
+            <div className="py-8">
+              <p className="text-dark-20">MENU</p>
+            </div>
+            <div className="flex flex-col gap-4">
+              {nav.map((list) => (
+                <DropdownMenu key={list.name} {...list} />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
