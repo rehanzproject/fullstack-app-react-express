@@ -8,6 +8,7 @@ import {
   updateProduct,
 } from "../controllers/Products.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
+//#region 
 /**
  * @swagger
  * components:
@@ -145,6 +146,7 @@ const ProductRouter = express.Router();
  *       404:
  *         description: The book was not found
  */
+//#endregion
 ProductRouter.get("/", verifyToken, getProducts);
 ProductRouter.get("/:id", getProductByOne);
 ProductRouter.put("/:id", updateProduct);
