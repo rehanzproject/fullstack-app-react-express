@@ -25,28 +25,29 @@ try {
 } catch (error) {
   console.error(error);
 }
-var whitelistDomain = ["http://localhost:5173", "https://diverse-restaurant.vercel.app"]
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://diverse-restaurant.vercel.app");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Credentials", true)
-  next();
-});
-app.use(
-  cors({
-    credentials: true,
-    origin: function(origin, callback) {
-      if (whitelistDomain.indexOf(origin) !== -1) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    },
-  })
-);
+// }
+// var whitelistDomain = ["http://localhost:5173", "https://diverse-restaurant.vercel.app"]
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "https://diverse-restaurant.vercel.app");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   res.header("Access-Control-Allow-Credentials", true)
+//   next();
+// });
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: function(origin, callback) {
+//       if (whitelistDomain.indexOf(origin) !== -1) {
+//         callback(null, true)
+//       } else {
+//         callback(new Error('Not allowed by CORS'))
+//       }
+//     },
+//   })
+// );
 app.use(fileUpload());
 app.use(cookieParser());
 app.use(express.json());
