@@ -1,0 +1,86 @@
+import { v4 as uuidv4 } from "uuid";
+import burger3 from "../../../assets/Food1.png";
+import burger from "../../../assets/burger1.png";
+
+export  const list = [
+    {
+      id: "6cc25575-4b79-40c4-b090-5def63084f76",
+      name: "Fried Potato",
+      pict: burger3,
+      type: "Fast Food",
+      rating: 4.7,
+      price: 70000,
+    },
+    {
+      id: "530d2f20-766a-4b1b-a183-c5afd60668d0",
+      name: "Fried Potato",
+      pict: burger3,
+      type: "Fast Food",
+      rating: 4.7,
+      price: 20000,
+    },
+    {
+      id: uuidv4(),
+      name: "Burger",
+      pict: burger,
+      type: "Fast Food",
+      rating: 4.7,
+      price: 20000,
+    },
+    {
+      id: uuidv4(),
+      name: "Burger",
+      pict: burger3,
+      type: "Fried Potato",
+      rating: 4.7,
+      price: 50000,
+    },
+    {
+      id: uuidv4(),
+      name: "Burger",
+      pict: burger3,
+      type: "Fried Potato",
+      rating: 4.7,
+      price: 20000,
+    },
+    {
+      id: uuidv4(),
+      name: "Burger",
+      pict: burger3,
+      type: "Fast Food",
+      rating: 4.7,
+      price: 20000,
+    },
+    {
+      id: uuidv4(),
+      name: "Burger",
+      pict: burger3,
+      type: "Fast Food",
+      rating: 4.7,
+      price: 20000,
+    },
+    {
+      id: uuidv4(),
+      name: "Burger",
+      pict: burger3,
+      type: "Fast Food",
+      rating: 4.7,
+      price: 20000,
+    },
+    {
+      id: uuidv4(),
+      name: "Burger",
+      pict: burger3,
+      type: "Fast Food",
+      rating: 4.7,
+      price: 20000,
+    },
+    {
+      id: uuidv4(),
+      name: "Burger",
+      pict: burger3,
+      type: "Fast Food",
+      rating: 4.7,
+      price: 20000,
+    },
+  ];
