@@ -7,7 +7,7 @@ function useFetcherMethod() {
   const config = {
     withCredentials: true,
     headers: {
-      Authorization: `Bearer ${""}`,
+      Authorization: `Bearer ${token}`,
     },
   };
   const getRequest = async (url) => {
@@ -25,28 +25,40 @@ function useFetcherMethod() {
     }
   };
   const postRequest = async (url, values) => {
-    const res = await axios.post(
-      import.meta.env.VITE_BASE_API_URL + url,
-      values,
-      config
-    );
-    return res.data;
+    try {
+      const res = await axios.post(
+        import.meta.env.VITE_BASE_API_URL + url,
+        values,
+        config
+      );
+      return res.data;
+    } catch (error) {
+      toast.error(error.message || error.response.data);
+    }
   };
 
   const updateRequest = async (id, values) => {
-    const res = await axios.put(
-      `${import.meta.env.VITE_BASE_API_URL}${id}`,
-      values
-    );
-    return res.data;
+    try {
+      const res = await axios.put(
+        `${import.meta.env.VITE_BASE_API_URL}${id}`,
+        values
+      );
+      return res.data;
+    } catch (error) {
+      toast.error(error.message || error.response.data);
+    }
   };
 
   const deleteRequest = async (id, values) => {
-    const res = await axios.delete(
-      `${import.meta.env.VITE_BASE_API_URL}${id}`,
-      values
-    );
-    return res.data;
+    try {
+      const res = await axios.delete(
+        `${import.meta.env.VITE_BASE_API_URL}${id}`,
+        values
+      );
+      return res.data;
+    } catch (error) {
+      toast.error(error.message || error.response.data);
+    }
   };
 
   return {
