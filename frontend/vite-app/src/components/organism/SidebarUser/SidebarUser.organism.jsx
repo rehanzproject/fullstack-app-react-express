@@ -3,34 +3,9 @@ import React, { useState } from "react";
 import MenuIcon from "../../atom/icons/MenuIcon";
 import XIcon from "../../atom/icons/XIcon";
 import LogoTailIcon from "../../atom/icons/LogoTailIcon";
+import { list } from "./constant";
 
-function SidebarUser() {
-  const list = [
-    {
-      name: "home",
-      href: "/home",
-    },
-    {
-      name: "home",
-      href: "/home",
-    },
-    {
-      name: "home",
-      href: "/home",
-    },
-    {
-      name: "home",
-      href: "/home",
-    },
-    {
-      name: "home",
-      href: "/home",
-    },
-    {
-      name: "home",
-      href: "/home",
-    },
-  ];
+function SidebarUser() {  
   const [open, setOpen] = useState(false);
   return (
     <div
@@ -41,14 +16,14 @@ function SidebarUser() {
       <AnimatePresence>
         <motion.div
           key={open ? "open" : "closed"}
-          initial={{ x: -100 }} // Initial x position
+          initial={{ x: -100 }} 
           animate={{
-            x: 0, // Animate x position
+            x: 0, 
             zIndex: 1,
             transition: {
               type: "tween",
-              duration: 0.3, // Adjust the duration
-              ease: "easeInOut", // Use easeInOut for ease-in-out transition
+              duration: 0.3, 
+              ease: "easeInOut",
             },
           }}
           exit={{
@@ -56,8 +31,8 @@ function SidebarUser() {
             x: -100,
             transition: {
               type: "tween",
-              duration: 0.3, // Adjust the duration
-              ease: "easeInOut", // Use easeInOut for ease-in-out transition
+              duration: 0.3, 
+              ease: "easeInOut",
             },
           }}
         >
@@ -76,7 +51,6 @@ function SidebarUser() {
               </a>
             ))}
             </div>
-       
           </div>
         </motion.div>
       </AnimatePresence>
